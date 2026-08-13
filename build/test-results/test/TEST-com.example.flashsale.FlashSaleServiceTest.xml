@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.flashsale.FlashSaleServiceTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-08-13T16:50:21.556Z" hostname="codespaces-6c102c" time="0.163">
+  <properties/>
+  <testcase name="placeOrder_shouldPreventRaceCondition_underConcurrentRequests()" classname="com.example.flashsale.FlashSaleServiceTest" time="0.097"/>
+  <testcase name="placeOrder_shouldFail_whenNotEnoughInventoryExists()" classname="com.example.flashsale.FlashSaleServiceTest" time="0.004"/>
+  <testcase name="placeOrder_shouldReduceStock_whenEnoughInventoryExists()" classname="com.example.flashsale.FlashSaleServiceTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

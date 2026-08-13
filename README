@@ -44,5 +44,166 @@ Distributed software application handling orders under massive traffic spikes (F
 │   ├── service       # Business logic and async processing
 │   ├── repository    # Database access interfaces
 │   └── exception     # Global exception handling
-└── docker-compose.yml # External services (MySQL, Redis, Kafka) run config
+├── src/main/resources
+│   └── application.properties # App configuration (Redis, ports, etc.)
+├── src/test/java     # JUnit / concurrency test code
+├── build.gradle      # Gradle build and dependency config
+├── settings.gradle   # Project name and Gradle settings
+├── docker-compose.yml# External services (Redis, Kafka)
+├── gradlew           # Gradle wrapper entrypoint
+└── README            # Project overview and architecture documentation
 ```
+
+## How the Spring Boot project is organized
+
+This project follows a typical Spring Boot layered architecture. The goal is to separate concerns so that request handling, business logic, and data access are not mixed together.
+
+### 1. controller
+The controller layer is the entry point for HTTP requests.
+
+- It receives API requests from clients.
+- It maps URLs to Java methods.
+- It validates request payloads and returns responses.
+- In this project, the current controller is responsible for order creation and inventory lookup.
+
+Example role:
+- `POST /api/orders` receives a purchase request.
+- The controller delegates the business work to the service layer.
+
+### 2. service
+The service layer contains the actual business logic.
+
+- Product validation
+- Inventory checking
+- Stock deduction logic
+- Distributed lock acquisition
+- Order event publishing
+
+This is the most important layer for a flash sale system because it handles the concurrency problem. This is where the actual “one user buys inventory while others are blocked or queued” logic lives.
+
+### 3. domain
+The domain package stores the core data objects used by the application.
+
+- Request DTOs
+- Product, Order, Inventory domain models
+- Value objects that represent business data
+
+In this codebase, `OrderRequest` is a simple domain record used to represent a purchase request.
+
+### 4. repository
+This layer is where database access should live when the app becomes persistent.
+
+- Insert/update/delete of order records
+- Inventory persistence in MySQL
+- Query operations by product or user
+
+This package is not fully implemented yet, but it is the right place for DB logic in a real production-ready service.
+
+### 5. config
+This package is intended for infrastructure-related configuration.
+
+- Redis client configuration
+- Kafka producer/consumer setup
+- Thread pool / async executor setup
+- Security configuration
+
+For a distributed system, this is where external services are connected and initialized.
+
+### 6. exception
+This layer is responsible for centralizing error handling.
+
+- Validation exceptions
+- Business exceptions such as “out of stock”
+- Standardized error responses for clients
+
+This is important because a flash sale system must return clean, consistent failures during overload or edge cases.
+
+### 7. resources
+The `src/main/resources` folder contains runtime configuration files.
+
+- `application.properties` holds configuration values like Redis host, Kafka broker URLs, server port, and other environment settings.
+
+### 8. test
+The test package validates the code behavior.
+
+- Unit tests for inventory logic
+- Concurrency tests to simulate many requests hitting the same stock
+- Regression tests for race condition fixes
+
+The current tests already cover a core issue: many threads ordering the same product at the same time.
+
+## What this project is currently doing
+
+The app already shows the core idea behind a flash-sale system:
+
+- HTTP requests are processed through Spring Boot controllers.
+- Business logic runs in services.
+- Inventory is guarded against concurrent modification.
+- Redis-style locking is introduced for multi-threaded safety.
+- Kafka-style event publishing is mocked to show the architecture for asynchronous processing.
+
+This means the project is currently a technical prototype demonstrating the architecture and concurrency patterns needed for a high-traffic sales system.
+
+## What still needs to be developed next
+
+The project is not yet a production-ready flash sale system. The next steps are:
+
+1. Real database integration
+   - Add MySQL or PostgreSQL.
+   - Create tables for product, inventory, and orders.
+   - Implement repository classes with JPA or JDBC.
+
+2. Proper Redis lock implementation
+   - Replace the simple local lock concept with robust distributed locking.
+   - Handle lock expiration, retry logic, and failure scenarios.
+
+3. Kafka real event flow
+   - Add Kafka producer and consumer configuration.
+   - Send order events to a topic.
+   - Process them asynchronously in separate worker components.
+
+4. Order state management
+   - Add statuses like PENDING, CREATED, CANCELLED, FAILED, PAID.
+   - Track final order outcomes.
+
+5. Payment and inventory transaction safety
+   - Ensure stock deduction and order creation happen consistently.
+   - Handle partial failures and retries.
+
+6. API security and authentication
+   - Add JWT or OAuth token validation.
+   - Separate user identity from order processing.
+
+7. Monitoring and observability
+   - Add logs, metrics, tracing, and health checks.
+   - Monitor queue depth, stock status, and order latency.
+
+8. Load testing and performance tuning
+   - Test with JMeter or other stress tools.
+   - Check throughput, timeout behavior, and database bottlenecks.
+
+9. Containerized deployment
+   - Create Dockerfiles and a full `docker-compose.yml` stack including Redis, Kafka, and MySQL.
+
+10. Production hardening
+   - Retry policies, idempotency, transaction boundaries, and failure recovery.
+
+## Recommended next milestone
+
+The next meaningful milestone is:
+
+- Build a real order-processing pipeline with MySQL + Redis lock + Kafka event flow,
+- then verify that under heavy concurrent requests, the stock never goes below zero.
+
+That is the point where this project becomes a genuine flash sale system instead of a concurrency demonstration.
+
+## Final takeaway
+
+This application is structured like a standard Spring Boot service, but it is currently focused on proving the core distributed-system ideas behind a flash sale platform:
+
+- concurrency handling,
+- race-condition prevention,
+- asynchronous order processing,
+- and distributed coordination.
+
+The rest of the work is about turning that prototype into a real, persistent, multi-service platform.
