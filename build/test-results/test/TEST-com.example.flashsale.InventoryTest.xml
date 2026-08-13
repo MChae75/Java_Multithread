@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.flashsale.InventoryTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-08-13T18:19:17.340Z" hostname="codespaces-6c102c" time="0.046">
+  <properties/>
+  <testcase name="testReserveFailsWhenInsufficientStock()" classname="com.example.flashsale.InventoryTest" time="0.004"/>
+  <testcase name="testConfirmSale()" classname="com.example.flashsale.InventoryTest" time="0.002"/>
+  <testcase name="testReserveSuccessfully()" classname="com.example.flashsale.InventoryTest" time="0.001"/>
+  <testcase name="testConcurrentReservations()" classname="com.example.flashsale.InventoryTest" time="0.034"/>
+  <testcase name="testReleaseReservation()" classname="com.example.flashsale.InventoryTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

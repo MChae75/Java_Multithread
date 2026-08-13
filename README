@@ -168,7 +168,7 @@ The project is not yet a production-ready flash sale system. The next steps are:
 
 5. Payment and inventory transaction safety
    - Ensure stock deduction and order creation happen consistently.
-   - Handle partial failures and retries.
+   - Handle partial failures and retries
 
 6. API security and authentication
    - Add JWT or OAuth token validation.

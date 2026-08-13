@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - testSaveAndRetrieveProduct()</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<div class="breadcrumbs">
+<a class="breadcrumb" href="../index.html">all</a> &gt; 
+<a class="breadcrumb" href="index.html">com.example.flashsale.JpaRepositoryIntegrationTest</a> &gt; 
+<span class="breadcrumb">testSaveAndRetrieveProduct()</span>
+</div>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a class="successGroup" href="#">Gradle Test Run :test</a>
+</li>
+</ul>
+<div class="tab">
+<h2>Gradle Test Run :test</h2>
+<h1>testSaveAndRetrieveProduct()</h1>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a class="" href="#">summary</a>
+</li>
+<li>
+<a class="" href="#">standard output</a>
+</li>
+</ul>
+<div class="tab">
+<h2>summary</h2>
+<div>
+<div class="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox">
+<div class="counter">0</div>
+<p>skipped</p>
+</div>
+</td>
+<td>
+<div class="infoBox duration">
+<div class="counter">0.052s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="tab">
+<h2>standard output</h2>
+<span class="code">
+<pre id="root-0-test-stdout-testSaveAndRetrieveProduct()">18:19:16.997 [Test worker] DEBUG org.hibernate.SQL - 
+    /* &lt;criteria&gt; */ select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0
+Hibernate: 
+    /* &lt;criteria&gt; */ select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0
+18:19:17.007 [Test worker] DEBUG org.hibernate.SQL - 
+    /* &lt;criteria&gt; */ select
+        ie1_0.product_id,
+        ie1_0.available_quantity,
+        ie1_0.last_updated,
+        ie1_0.reserved_quantity,
+        ie1_0.sold_quantity 
+    from
+        inventory ie1_0
+Hibernate: 
+    /* &lt;criteria&gt; */ select
+        ie1_0.product_id,
+        ie1_0.available_quantity,
+        ie1_0.last_updated,
+        ie1_0.reserved_quantity,
+        ie1_0.sold_quantity 
+    from
+        inventory ie1_0
+18:19:17.011 [Test worker] DEBUG org.hibernate.SQL - 
+    /* &lt;criteria&gt; */ select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0
+Hibernate: 
+    /* &lt;criteria&gt; */ select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0
+18:19:17.017 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+Hibernate: 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+18:19:17.024 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+Hibernate: 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+18:19:17.029 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+Hibernate: 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+</pre>
+<button class="clipboard-copy-btn" aria-label="Copy to clipboard" data-copy-element-id="root-0-test-stdout-testSaveAndRetrieveProduct()">Copy</button>
+</span>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="https://www.gradle.org">Gradle 9.4.0</a> at Aug 13, 2026, 6:19:18 PM</p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,1784 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.flashsale.JpaRepositoryIntegrationTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-08-13T18:19:10.736Z" hostname="codespaces-6c102c" time="6.541">
+  <properties/>
+  <testcase name="testUpdateOrderStatus()" classname="com.example.flashsale.JpaRepositoryIntegrationTest" time="1.035"/>
+  <testcase name="testSaveAndRetrieveOrder()" classname="com.example.flashsale.JpaRepositoryIntegrationTest" time="0.039"/>
+  <testcase name="testInventoryReservation()" classname="com.example.flashsale.JpaRepositoryIntegrationTest" time="0.064"/>
+  <testcase name="testSaveAndRetrieveInventory()" classname="com.example.flashsale.JpaRepositoryIntegrationTest" time="0.031"/>
+  <testcase name="testSaveAndRetrieveProduct()" classname="com.example.flashsale.JpaRepositoryIntegrationTest" time="0.052"/>
+  <testcase name="testFindProductByName()" classname="com.example.flashsale.JpaRepositoryIntegrationTest" time="0.1"/>
+  <testcase name="testFindOrdersByStatus()" classname="com.example.flashsale.JpaRepositoryIntegrationTest" time="0.063"/>
+  <testcase name="testFindOrdersByUserId()" classname="com.example.flashsale.JpaRepositoryIntegrationTest" time="0.066"/>
+  <system-out><![CDATA[18:19:10.867 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.example.flashsale.JpaRepositoryIntegrationTest]: JpaRepositoryIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+18:19:11.054 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.example.flashsale.FlashSaleApplication for test class com.example.flashsale.JpaRepositoryIntegrationTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.2)
+
+18:19:11.567 [Test worker] WARN  o.s.b.t.j.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/home/codespace/.gradle/caches/modules-2/files-2.1/org.json/json/20231013/e22e0c040fe16f04ffdb85d851d77b07fc05ea52/json-20231013.jar!/org/json/JSONObject.class
+	jar:file:/home/codespace/.gradle/caches/modules-2/files-2.1/com.vaadin.external.google/android-json/0.0.20131108.vaadin1/fa26d351fe62a6a17f5cda1287c1c6110dec413f/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+18:19:11.587 [Test worker] INFO  c.e.f.JpaRepositoryIntegrationTest - Starting JpaRepositoryIntegrationTest using Java 17.0.19 with PID 21479 (started by codespace in /workspaces/Java_Multithread)
+18:19:11.587 [Test worker] DEBUG c.e.f.JpaRepositoryIntegrationTest - Running with Spring Boot v3.3.2, Spring v6.1.11
+18:19:11.588 [Test worker] INFO  c.e.f.JpaRepositoryIntegrationTest - The following 1 profile is active: "test"
+18:19:12.333 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+18:19:12.337 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+18:19:12.543 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 196 ms. Found 4 JPA repository interfaces.
+18:19:12.637 [Test worker] INFO  o.s.b.t.a.j.TestDatabaseAutoConfiguration$EmbeddedDataSourceBeanFactoryPostProcessor - Replacing 'dataSource' DataSource bean with embedded version
+18:19:12.793 [Test worker] INFO  o.s.j.d.e.EmbeddedDatabaseFactory - Starting embedded database: url='jdbc:h2:mem:b37b77c3-9afa-4bde-8d2a-27430927d8cb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+18:19:13.278 [Test worker] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+18:19:13.337 [Test worker] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+18:19:13.390 [Test worker] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+18:19:13.696 [Test worker] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+18:19:13.751 [Test worker] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+18:19:13.752 [Test worker] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+18:19:15.218 [Test worker] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+18:19:15.269 [Test worker] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+18:19:15.789 [Test worker] INFO  c.e.f.JpaRepositoryIntegrationTest - Started JpaRepositoryIntegrationTest in 4.642 seconds (process running for 6.532)
+18:19:16.742 [Test worker] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0
+Hibernate: 
+    /* <criteria> */ select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0
+18:19:16.754 [Test worker] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        ie1_0.product_id,
+        ie1_0.available_quantity,
+        ie1_0.last_updated,
+        ie1_0.reserved_quantity,
+        ie1_0.sold_quantity 
+    from
+        inventory ie1_0
+Hibernate: 
+    /* <criteria> */ select
+        ie1_0.product_id,
+        ie1_0.available_quantity,
+        ie1_0.last_updated,
+        ie1_0.reserved_quantity,
+        ie1_0.sold_quantity 
+    from
+        inventory ie1_0
+18:19:16.758 [Test worker] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0
+Hibernate: 
+    /* <criteria> */ select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0
+18:19:16.778 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+Hibernate: 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+18:19:16.804 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+Hibernate: 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+18:19:16.806 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+Hibernate: 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+18:19:16.811 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0 
+    where
+        oe1_0.order_id=?
+Hibernate: 
+    select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0 
+    where
+        oe1_0.order_id=?
+18:19:16.852 [Test worker] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0
+Hibernate: 
+    /* <criteria> */ select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0
+18:19:16.857 [Test worker] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        ie1_0.product_id,
+        ie1_0.available_quantity,
+        ie1_0.last_updated,
+        ie1_0.reserved_quantity,
+        ie1_0.sold_quantity 
+    from
+        inventory ie1_0
+Hibernate: 
+    /* <criteria> */ select
+        ie1_0.product_id,
+        ie1_0.available_quantity,
+        ie1_0.last_updated,
+        ie1_0.reserved_quantity,
+        ie1_0.sold_quantity 
+    from
+        inventory ie1_0
+18:19:16.863 [Test worker] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0
+Hibernate: 
+    /* <criteria> */ select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0
+18:19:16.868 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+Hibernate: 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+18:19:16.871 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+Hibernate: 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+18:19:16.873 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+Hibernate: 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+18:19:16.877 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0 
+    where
+        oe1_0.order_id=?
+Hibernate: 
+    select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0 
+    where
+        oe1_0.order_id=?
+18:19:16.901 [Test worker] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0
+Hibernate: 
+    /* <criteria> */ select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0
+18:19:16.909 [Test worker] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        ie1_0.product_id,
+        ie1_0.available_quantity,
+        ie1_0.last_updated,
+        ie1_0.reserved_quantity,
+        ie1_0.sold_quantity 
+    from
+        inventory ie1_0
+Hibernate: 
+    /* <criteria> */ select
+        ie1_0.product_id,
+        ie1_0.available_quantity,
+        ie1_0.last_updated,
+        ie1_0.reserved_quantity,
+        ie1_0.sold_quantity 
+    from
+        inventory ie1_0
+18:19:16.913 [Test worker] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0
+Hibernate: 
+    /* <criteria> */ select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0
+18:19:16.916 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+Hibernate: 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+18:19:16.921 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+Hibernate: 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+18:19:16.922 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+Hibernate: 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+18:19:16.932 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        ie1_0.product_id,
+        ie1_0.available_quantity,
+        ie1_0.last_updated,
+        ie1_0.reserved_quantity,
+        ie1_0.sold_quantity 
+    from
+        inventory ie1_0 
+    where
+        ie1_0.product_id=?
+Hibernate: 
+    select
+        ie1_0.product_id,
+        ie1_0.available_quantity,
+        ie1_0.last_updated,
+        ie1_0.reserved_quantity,
+        ie1_0.sold_quantity 
+    from
+        inventory ie1_0 
+    where
+        ie1_0.product_id=?
+18:19:16.959 [Test worker] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0
+Hibernate: 
+    /* <criteria> */ select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0
+18:19:16.964 [Test worker] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        ie1_0.product_id,
+        ie1_0.available_quantity,
+        ie1_0.last_updated,
+        ie1_0.reserved_quantity,
+        ie1_0.sold_quantity 
+    from
+        inventory ie1_0
+Hibernate: 
+    /* <criteria> */ select
+        ie1_0.product_id,
+        ie1_0.available_quantity,
+        ie1_0.last_updated,
+        ie1_0.reserved_quantity,
+        ie1_0.sold_quantity 
+    from
+        inventory ie1_0
+18:19:16.966 [Test worker] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0
+Hibernate: 
+    /* <criteria> */ select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0
+18:19:16.968 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+Hibernate: 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+18:19:16.972 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+Hibernate: 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+18:19:16.977 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+Hibernate: 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+18:19:16.979 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        ie1_0.product_id,
+        ie1_0.available_quantity,
+        ie1_0.last_updated,
+        ie1_0.reserved_quantity,
+        ie1_0.sold_quantity 
+    from
+        inventory ie1_0 
+    where
+        ie1_0.product_id=?
+Hibernate: 
+    select
+        ie1_0.product_id,
+        ie1_0.available_quantity,
+        ie1_0.last_updated,
+        ie1_0.reserved_quantity,
+        ie1_0.sold_quantity 
+    from
+        inventory ie1_0 
+    where
+        ie1_0.product_id=?
+18:19:16.997 [Test worker] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0
+Hibernate: 
+    /* <criteria> */ select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0
+18:19:17.007 [Test worker] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        ie1_0.product_id,
+        ie1_0.available_quantity,
+        ie1_0.last_updated,
+        ie1_0.reserved_quantity,
+        ie1_0.sold_quantity 
+    from
+        inventory ie1_0
+Hibernate: 
+    /* <criteria> */ select
+        ie1_0.product_id,
+        ie1_0.available_quantity,
+        ie1_0.last_updated,
+        ie1_0.reserved_quantity,
+        ie1_0.sold_quantity 
+    from
+        inventory ie1_0
+18:19:17.011 [Test worker] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0
+Hibernate: 
+    /* <criteria> */ select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0
+18:19:17.017 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+Hibernate: 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+18:19:17.024 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+Hibernate: 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+18:19:17.029 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+Hibernate: 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+18:19:17.049 [Test worker] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0
+Hibernate: 
+    /* <criteria> */ select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0
+18:19:17.053 [Test worker] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        ie1_0.product_id,
+        ie1_0.available_quantity,
+        ie1_0.last_updated,
+        ie1_0.reserved_quantity,
+        ie1_0.sold_quantity 
+    from
+        inventory ie1_0
+Hibernate: 
+    /* <criteria> */ select
+        ie1_0.product_id,
+        ie1_0.available_quantity,
+        ie1_0.last_updated,
+        ie1_0.reserved_quantity,
+        ie1_0.sold_quantity 
+    from
+        inventory ie1_0
+18:19:17.056 [Test worker] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0
+Hibernate: 
+    /* <criteria> */ select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0
+18:19:17.057 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+Hibernate: 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+18:19:17.063 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+Hibernate: 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+18:19:17.068 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+Hibernate: 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+18:19:17.117 [Test worker] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.example.flashsale.entity.ProductEntity */insert 
+    into
+        products (created_at, description, name, price, total_stock, updated_at, product_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    /* insert for
+        com.example.flashsale.entity.ProductEntity */insert 
+    into
+        products (created_at, description, name, price, total_stock, updated_at, product_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+18:19:17.120 [Test worker] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.example.flashsale.entity.ProductEntity */insert 
+    into
+        products (created_at, description, name, price, total_stock, updated_at, product_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    /* insert for
+        com.example.flashsale.entity.ProductEntity */insert 
+    into
+        products (created_at, description, name, price, total_stock, updated_at, product_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+18:19:17.121 [Test worker] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.example.flashsale.entity.ProductEntity */insert 
+    into
+        products (created_at, description, name, price, total_stock, updated_at, product_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    /* insert for
+        com.example.flashsale.entity.ProductEntity */insert 
+    into
+        products (created_at, description, name, price, total_stock, updated_at, product_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+18:19:17.132 [Test worker] DEBUG org.hibernate.SQL - 
+    /* update
+        for com.example.flashsale.entity.ProductEntity */update products 
+    set
+        description=?,
+        name=?,
+        price=?,
+        total_stock=?,
+        updated_at=? 
+    where
+        product_id=?
+Hibernate: 
+    /* update
+        for com.example.flashsale.entity.ProductEntity */update products 
+    set
+        description=?,
+        name=?,
+        price=?,
+        total_stock=?,
+        updated_at=? 
+    where
+        product_id=?
+18:19:17.136 [Test worker] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.name=?
+Hibernate: 
+    /* <criteria> */ select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.name=?
+18:19:17.152 [Test worker] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0
+Hibernate: 
+    /* <criteria> */ select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0
+18:19:17.157 [Test worker] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        ie1_0.product_id,
+        ie1_0.available_quantity,
+        ie1_0.last_updated,
+        ie1_0.reserved_quantity,
+        ie1_0.sold_quantity 
+    from
+        inventory ie1_0
+Hibernate: 
+    /* <criteria> */ select
+        ie1_0.product_id,
+        ie1_0.available_quantity,
+        ie1_0.last_updated,
+        ie1_0.reserved_quantity,
+        ie1_0.sold_quantity 
+    from
+        inventory ie1_0
+18:19:17.163 [Test worker] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0
+Hibernate: 
+    /* <criteria> */ select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0
+18:19:17.164 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+Hibernate: 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+18:19:17.167 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+Hibernate: 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+18:19:17.168 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+Hibernate: 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+18:19:17.171 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0 
+    where
+        oe1_0.order_id=?
+Hibernate: 
+    select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0 
+    where
+        oe1_0.order_id=?
+18:19:17.175 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0 
+    where
+        oe1_0.order_id=?
+Hibernate: 
+    select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0 
+    where
+        oe1_0.order_id=?
+18:19:17.183 [Test worker] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.example.flashsale.entity.ProductEntity */insert 
+    into
+        products (created_at, description, name, price, total_stock, updated_at, product_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    /* insert for
+        com.example.flashsale.entity.ProductEntity */insert 
+    into
+        products (created_at, description, name, price, total_stock, updated_at, product_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+18:19:17.185 [Test worker] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.example.flashsale.entity.ProductEntity */insert 
+    into
+        products (created_at, description, name, price, total_stock, updated_at, product_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    /* insert for
+        com.example.flashsale.entity.ProductEntity */insert 
+    into
+        products (created_at, description, name, price, total_stock, updated_at, product_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+18:19:17.186 [Test worker] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.example.flashsale.entity.ProductEntity */insert 
+    into
+        products (created_at, description, name, price, total_stock, updated_at, product_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    /* insert for
+        com.example.flashsale.entity.ProductEntity */insert 
+    into
+        products (created_at, description, name, price, total_stock, updated_at, product_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+18:19:17.191 [Test worker] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.example.flashsale.entity.OrderEntity */insert 
+    into
+        orders (created_at, product_id, quantity, status, total_price, updated_at, user_id, order_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    /* insert for
+        com.example.flashsale.entity.OrderEntity */insert 
+    into
+        orders (created_at, product_id, quantity, status, total_price, updated_at, user_id, order_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+18:19:17.191 [Test worker] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.example.flashsale.entity.OrderEntity */insert 
+    into
+        orders (created_at, product_id, quantity, status, total_price, updated_at, user_id, order_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    /* insert for
+        com.example.flashsale.entity.OrderEntity */insert 
+    into
+        orders (created_at, product_id, quantity, status, total_price, updated_at, user_id, order_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+18:19:17.194 [Test worker] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0 
+    where
+        oe1_0.status=?
+Hibernate: 
+    /* <criteria> */ select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0 
+    where
+        oe1_0.status=?
+18:19:17.198 [Test worker] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0 
+    where
+        oe1_0.status=?
+Hibernate: 
+    /* <criteria> */ select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0 
+    where
+        oe1_0.status=?
+18:19:17.217 [Test worker] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0
+Hibernate: 
+    /* <criteria> */ select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0
+18:19:17.223 [Test worker] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        ie1_0.product_id,
+        ie1_0.available_quantity,
+        ie1_0.last_updated,
+        ie1_0.reserved_quantity,
+        ie1_0.sold_quantity 
+    from
+        inventory ie1_0
+Hibernate: 
+    /* <criteria> */ select
+        ie1_0.product_id,
+        ie1_0.available_quantity,
+        ie1_0.last_updated,
+        ie1_0.reserved_quantity,
+        ie1_0.sold_quantity 
+    from
+        inventory ie1_0
+18:19:17.227 [Test worker] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0
+Hibernate: 
+    /* <criteria> */ select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0
+18:19:17.229 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+Hibernate: 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+18:19:17.233 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+Hibernate: 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+18:19:17.234 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+Hibernate: 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+18:19:17.238 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0 
+    where
+        oe1_0.order_id=?
+Hibernate: 
+    select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0 
+    where
+        oe1_0.order_id=?
+18:19:17.241 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0 
+    where
+        oe1_0.order_id=?
+Hibernate: 
+    select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0 
+    where
+        oe1_0.order_id=?
+18:19:17.243 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0 
+    where
+        oe1_0.order_id=?
+Hibernate: 
+    select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0 
+    where
+        oe1_0.order_id=?
+18:19:17.252 [Test worker] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.example.flashsale.entity.ProductEntity */insert 
+    into
+        products (created_at, description, name, price, total_stock, updated_at, product_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    /* insert for
+        com.example.flashsale.entity.ProductEntity */insert 
+    into
+        products (created_at, description, name, price, total_stock, updated_at, product_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+18:19:17.253 [Test worker] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.example.flashsale.entity.ProductEntity */insert 
+    into
+        products (created_at, description, name, price, total_stock, updated_at, product_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    /* insert for
+        com.example.flashsale.entity.ProductEntity */insert 
+    into
+        products (created_at, description, name, price, total_stock, updated_at, product_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+18:19:17.253 [Test worker] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.example.flashsale.entity.ProductEntity */insert 
+    into
+        products (created_at, description, name, price, total_stock, updated_at, product_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    /* insert for
+        com.example.flashsale.entity.ProductEntity */insert 
+    into
+        products (created_at, description, name, price, total_stock, updated_at, product_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+18:19:17.256 [Test worker] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.example.flashsale.entity.OrderEntity */insert 
+    into
+        orders (created_at, product_id, quantity, status, total_price, updated_at, user_id, order_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    /* insert for
+        com.example.flashsale.entity.OrderEntity */insert 
+    into
+        orders (created_at, product_id, quantity, status, total_price, updated_at, user_id, order_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+18:19:17.257 [Test worker] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.example.flashsale.entity.OrderEntity */insert 
+    into
+        orders (created_at, product_id, quantity, status, total_price, updated_at, user_id, order_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    /* insert for
+        com.example.flashsale.entity.OrderEntity */insert 
+    into
+        orders (created_at, product_id, quantity, status, total_price, updated_at, user_id, order_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+18:19:17.259 [Test worker] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.example.flashsale.entity.OrderEntity */insert 
+    into
+        orders (created_at, product_id, quantity, status, total_price, updated_at, user_id, order_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    /* insert for
+        com.example.flashsale.entity.OrderEntity */insert 
+    into
+        orders (created_at, product_id, quantity, status, total_price, updated_at, user_id, order_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+18:19:17.263 [Test worker] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0 
+    where
+        oe1_0.user_id=?
+Hibernate: 
+    /* <criteria> */ select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0 
+    where
+        oe1_0.user_id=?
+18:19:17.269 [Test worker] DEBUG org.hibernate.SQL - 
+    /* <criteria> */ select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0 
+    where
+        oe1_0.user_id=?
+Hibernate: 
+    /* <criteria> */ select
+        oe1_0.order_id,
+        oe1_0.created_at,
+        oe1_0.product_id,
+        oe1_0.quantity,
+        oe1_0.status,
+        oe1_0.total_price,
+        oe1_0.updated_at,
+        oe1_0.user_id 
+    from
+        orders oe1_0 
+    where
+        oe1_0.user_id=?
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

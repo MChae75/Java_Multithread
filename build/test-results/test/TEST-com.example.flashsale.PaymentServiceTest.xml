@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.flashsale.PaymentServiceTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-08-13T18:19:17.389Z" hostname="codespaces-6c102c" time="0.511">
+  <properties/>
+  <testcase name="testCreditCardPaymentInitiation()" classname="com.example.flashsale.PaymentServiceTest" time="0.004"/>
+  <testcase name="testWalletPaymentInitiation()" classname="com.example.flashsale.PaymentServiceTest" time="0.003"/>
+  <testcase name="testPaymentStatusCheck()" classname="com.example.flashsale.PaymentServiceTest" time="0.501"/>
+  <system-out><![CDATA[[Payment Service] Processing wallet payment for order: order-456
+[Payment Service] Payment 72ec3787-228f-41c7-9206-96353514c23a result: PaymentResult{paymentId='72ec3787-228f-41c7-9206-96353514c23a', orderId='order-456', status=SUCCESS, message='Wallet payment successful', processedAt=2026-08-13T18:19:17.449462432}
+[Payment Service] Processing debit card payment for order: order-789
+[Payment Service] Payment 220ec4b2-4907-4ba1-ab67-81ebba6848b0 result: PaymentResult{paymentId='220ec4b2-4907-4ba1-ab67-81ebba6848b0', orderId='order-789', status=SUCCESS, message='Debit card payment successful', processedAt=2026-08-13T18:19:17.480842482}
+[Payment Service] Processing credit card payment for order: order-123
+[Payment Service] Payment 3d122d4b-eb73-42ba-af85-3296e02b4397 result: PaymentResult{paymentId='3d122d4b-eb73-42ba-af85-3296e02b4397', orderId='order-123', status=SUCCESS, message='Credit card payment successful', processedAt=2026-08-13T18:19:17.495444578}
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

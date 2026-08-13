@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.flashsale.SimpleDatabaseTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-08-13T18:19:17.909Z" hostname="codespaces-6c102c" time="0.414">
+  <properties/>
+  <testcase name="testSaveProduct()" classname="com.example.flashsale.SimpleDatabaseTest" time="0.008"/>
+  <testcase name="testFindProduct()" classname="com.example.flashsale.SimpleDatabaseTest" time="0.37"/>
+  <testcase name="testProductRepositoryInjection()" classname="com.example.flashsale.SimpleDatabaseTest" time="0.012"/>
+  <system-out><![CDATA[18:19:17.912 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.example.flashsale.SimpleDatabaseTest]: SimpleDatabaseTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+18:19:17.924 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.example.flashsale.FlashSaleApplication for test class com.example.flashsale.SimpleDatabaseTest
+18:19:17.930 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+Hibernate: 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+18:19:17.944 [Test worker] DEBUG org.hibernate.SQL - 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+Hibernate: 
+    select
+        pe1_0.product_id,
+        pe1_0.created_at,
+        pe1_0.description,
+        pe1_0.name,
+        pe1_0.price,
+        pe1_0.total_stock,
+        pe1_0.updated_at 
+    from
+        products pe1_0 
+    where
+        pe1_0.product_id=?
+18:19:18.284 [Test worker] DEBUG org.hibernate.SQL - 
+    /* insert for
+        com.example.flashsale.entity.ProductEntity */insert 
+    into
+        products (created_at, description, name, price, total_stock, updated_at, product_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    /* insert for
+        com.example.flashsale.entity.ProductEntity */insert 
+    into
+        products (created_at, description, name, price, total_stock, updated_at, product_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?)
+18:19:18.285 [Test worker] DEBUG org.hibernate.SQL - 
+    /* select
+        count(*) 
+    from
+        ProductEntity x 
+    WHERE
+        x.productId = :productId */ select
+            count(*) 
+        from
+            products pe1_0 
+        where
+            pe1_0.product_id=?
+Hibernate: 
+    /* select
+        count(*) 
+    from
+        ProductEntity x 
+    WHERE
+        x.productId = :productId */ select
+            count(*) 
+        from
+            products pe1_0 
+        where
+            pe1_0.product_id=?
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

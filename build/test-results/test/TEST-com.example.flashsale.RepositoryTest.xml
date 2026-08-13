@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.flashsale.RepositoryTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-08-13T18:19:17.901Z" hostname="codespaces-6c102c" time="0.007">
+  <properties/>
+  <testcase name="testFindByStatus()" classname="com.example.flashsale.RepositoryTest" time="0.002"/>
+  <testcase name="testFindByUserId()" classname="com.example.flashsale.RepositoryTest" time="0.002"/>
+  <testcase name="testSaveAndFindOrder()" classname="com.example.flashsale.RepositoryTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
