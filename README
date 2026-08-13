@@ -1,0 +1,48 @@
+# Distributed Flash Sale System
+
+## Overview
+Distributed software application handling orders under massive traffic spikes (Flash Sale) while maintaining data consistency. Built with Multi-tiered, Multi-threaded, and Distributed architecture, following Object-Oriented Design (OOD) principles.
+
+## Tech Stack
+* **Language**: Java 17+
+* **Framework**: Spring Boot 3.x
+* **Message Broker**: Apache Kafka
+* **Cache & Lock**: Redis
+* **Database**: MySQL (Read/Write Replication)
+* **Testing**: JUnit 5, JMeter
+
+## Key Features & Architecture
+* **Object-Oriented Design (OOD)**
+  * Separate Product, Order, Inventory domains.
+  * Interface-based design separates business logic from database access logic.
+  * Strategy pattern (payment method branching) and State pattern (order status management) applied.
+* **Multi-tiered Architecture**
+  * Presentation (REST API), Business (Service), Data Access (Repository) layers split.
+  * API server (order intake) separated from Worker nodes (order processing).
+* **Multi-threaded Processing**
+  * Parallel processing (user authentication, stock check, payment request) via `CompletableFuture` and a custom `ExecutorService`.
+* **Distributed System**
+  * Async queuing of large-scale order requests via Kafka.
+  * Redis distributed lock prevents race conditions on stock deduction under concurrent access.
+  * Multiple server nodes for load distribution.
+
+## System Workflow
+1. Receive user API request (POST /api/v1/orders)
+2. JWT authentication and request validation in parallel (Multi-threading)
+3. First-pass stock check and pre-payment via Redis
+4. Publish order message to Kafka topic (Asynchronous)
+5. Worker server consumes message and acquires Redis distributed lock
+6. Deduct actual stock in MySQL and write order data
+7. Update result status
+
+## Project Structure
+```text
+├── src/main/java/com/example/flashsale
+│   ├── config        # Redis, Kafka, ThreadPool settings
+│   ├── controller    # REST API endpoints
+│   ├── domain        # Domain models and objects
+│   ├── service       # Business logic and async processing
+│   ├── repository    # Database access interfaces
+│   └── exception     # Global exception handling
+└── docker-compose.yml # External services (MySQL, Redis, Kafka) run config
+```
