@@ -12,8 +12,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
+import com.example.flashsale.domain.ProductResponse;
+import com.example.flashsale.entity.ProductEntity;
+import com.example.flashsale.repository.jpa.ProductJpaRepository;
 
 /**
  * Enhanced Flash Sale Service with Database Support
@@ -35,6 +40,9 @@ public class FlashSaleServiceDb {
 
     @Autowired(required = false)
     private InventoryJpaRepository inventoryJpaRepository;
+
+    @Autowired(required = false)
+    private ProductJpaRepository productJpaRepository;
 
     public FlashSaleServiceDb() {
         this(Map.of("SKU-1001", 100, "SKU-1002", 50, "SKU-1003", 75));
@@ -149,6 +157,26 @@ public class FlashSaleServiceDb {
     }
 
     /**
+     * Get all orders
+     */
+    public java.util.List<OrderEntity> getAllOrders() {
+        if (orderJpaRepository != null) {
+            return orderJpaRepository.findAll();
+        }
+        return new java.util.ArrayList<>();
+    }
+
+    /**
+     * Delete order
+     */
+    @Transactional
+    public void deleteOrder(String orderId) {
+        if (orderJpaRepository != null) {
+            orderJpaRepository.deleteById(orderId);
+        }
+    }
+
+    /**
      * Update order status
      */
     @Transactional
@@ -169,6 +197,41 @@ public class FlashSaleServiceDb {
             return inventoryJpaRepository.findById(productId).orElse(null);
         }
         return null;
+    }
+
+    /**
+     * Get all products with inventory
+     */
+    public List<ProductResponse> getAllProducts() {
+        if (productJpaRepository == null) return new ArrayList<>();
+        
+        List<ProductEntity> products = productJpaRepository.findAll();
+        List<ProductResponse> responses = new ArrayList<>();
+        
+        for (ProductEntity p : products) {
+            int stock = 0;
+            if (inventoryJpaRepository != null) {
+                InventoryEntity inv = inventoryJpaRepository.findById(p.getProductId()).orElse(null);
+                if (inv != null) {
+                    stock = inv.getAvailableQuantity();
+                }
+            } else {
+                stock = inventory.getOrDefault(p.getProductId(), 0);
+            }
+            
+            // Generate a fake original price (+20% or flat +$30)
+            java.math.BigDecimal originalPrice = p.getPrice().add(new java.math.BigDecimal("30.00"));
+            
+            responses.add(new ProductResponse(
+                p.getProductId(),
+                p.getName(),
+                p.getDescription(),
+                originalPrice,
+                p.getPrice(),
+                stock
+            ));
+        }
+        return responses;
     }
 
     private void validateOrderRequest(OrderRequest request) {

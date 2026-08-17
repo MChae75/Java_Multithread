@@ -1,23 +1,23 @@
 package com.example.flashsale.controller;
 
 import com.example.flashsale.domain.OrderRequest;
-import com.example.flashsale.service.FlashSaleService;
+import com.example.flashsale.entity.OrderEntity;
+import com.example.flashsale.service.FlashSaleServiceDb;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
+import com.example.flashsale.domain.ProductResponse;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "*")
 public class OrderController {
 
-    private final FlashSaleService flashSaleService;
+    private final FlashSaleServiceDb flashSaleService;
 
-    public OrderController(FlashSaleService flashSaleService) {
+    public OrderController(FlashSaleServiceDb flashSaleService) {
         this.flashSaleService = flashSaleService;
     }
 
@@ -30,5 +30,21 @@ public class OrderController {
     @GetMapping("/inventory")
     public ResponseEntity<Map<String, Integer>> inventory() {
         return ResponseEntity.ok(flashSaleService.getInventorySnapshot());
+    }
+
+    @GetMapping("/products")
+    public ResponseEntity<List<ProductResponse>> getProducts() {
+        return ResponseEntity.ok(flashSaleService.getAllProducts());
+    }
+
+    @GetMapping("/orders")
+    public ResponseEntity<List<OrderEntity>> getAllOrders() {
+        return ResponseEntity.ok(flashSaleService.getAllOrders());
+    }
+
+    @DeleteMapping("/orders/{id}")
+    public ResponseEntity<Void> deleteOrder(@PathVariable String id) {
+        flashSaleService.deleteOrder(id);
+        return ResponseEntity.ok().build();
     }
 }

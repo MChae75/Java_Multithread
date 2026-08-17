@@ -1,0 +1,23 @@
+# User specific documentation
+explain.md
+
+# Build output
+build/
+bin/
+
+# Temporary files
+*.class
+*.log
+*.tmp
+*.swp
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+
+# Frontend (Node)
+frontend/node_modules/
+frontend/dist/
+frontend/.env.local
+frontend/.env.*.local

@@ -1,0 +1,279 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600&display=swap');
+
+:root {
+  --woot-green: #8DC63F;
+  --woot-dark: #333333;
+  --woot-yellow: #FFD100;
+  --woot-orange: #F7941E;
+  --woot-light-gray: #F2F2F2;
+  --woot-border: #E0E0E0;
+  --text-main: #333333;
+  --text-muted: #666666;
+  --white: #FFFFFF;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: var(--woot-light-gray);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+/* Layout */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* Navbar */
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 2rem;
+  background-color: var(--woot-dark);
+  border-bottom: 5px solid var(--woot-green);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-brand {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--woot-green);
+  letter-spacing: -1px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-link {
+  color: var(--white);
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--woot-green);
+}
+
+/* Buttons */
+.btn {
+  background-color: var(--woot-yellow);
+  color: var(--woot-dark);
+  border: 2px solid var(--woot-dark);
+  padding: 1rem 2rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  box-shadow: 4px 4px 0px var(--woot-dark);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn:hover {
+  background-color: var(--woot-orange);
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px var(--woot-dark);
+}
+
+.btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px var(--woot-dark);
+}
+
+.btn-secondary {
+  background-color: var(--white);
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+.btn-secondary:hover {
+  background-color: var(--woot-light-gray);
+}
+
+.btn-danger {
+  background-color: #EF4444;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #DC2626;
+}
+
+/* Panels / Cards */
+.panel {
+  background-color: var(--white);
+  border: 2px solid var(--woot-border);
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.deal-card {
+  background-color: var(--white);
+  border: 1px solid var(--woot-border);
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s;
+}
+
+.deal-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Grid Layout */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* Daily Deal (Hero) */
+.daily-deal {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  background-color: var(--white);
+  border: 2px solid var(--woot-border);
+  margin-bottom: 3rem;
+}
+
+.daily-deal-image {
+  background-color: var(--woot-light-gray);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8rem;
+  padding: 4rem;
+  border-right: 2px solid var(--woot-border);
+}
+
+.daily-deal-info {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.daily-deal-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--woot-dark);
+}
+
+.price-block {
+  margin-bottom: 2rem;
+}
+
+.price {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--woot-dark);
+}
+
+/* Stock Badge */
+.stock-badge {
+  display: inline-block;
+  background-color: var(--woot-green);
+  color: var(--white);
+  padding: 0.2rem 0.5rem;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+.stock-badge.low {
+  background-color: #EF4444;
+}
+
+.stock-badge.sold-out {
+  background-color: var(--text-muted);
+}
+
+/* Admin Table */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.admin-table th, .admin-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--woot-border);
+}
+
+.admin-table th {
+  background-color: var(--woot-light-gray);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.admin-table tr:hover td {
+  background-color: #FAFAFA;
+}
+
+/* Alerts */
+.alert {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  border: 2px solid;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.alert-success {
+  background-color: #ECFCCB;
+  border-color: var(--woot-green);
+  color: #3F6212;
+}
+
+.alert-danger {
+  background-color: #FEE2E2;
+  border-color: #EF4444;
+  color: #991B1B;
+}
+
+.cart-summary {
+  position: fixed;
+  bottom: 0;
+  right: 2rem;
+  width: 350px;
+  background: var(--white);
+  border: 4px solid var(--woot-dark);
+  border-bottom: none;
+  padding: 1.5rem;
+  z-index: 50;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
+}
